@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProduktPix × Zippy — Proposta Visual</title>
+  <meta name="description" content="Proposta visual simples para a Zippy com exemplos reais produzidos no ProduktPix." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f6f8ff;
+      --surface-2: #fbfcff;
+      --text: #101114;
+      --muted: #667085;
+      --line: #e7ebf4;
+      --blue: #3b5bff;
+      --blue-dark: #2f4ef5;
+      --blue-soft: #eef2ff;
+      --shadow: 0 14px 40px rgba(26, 38, 77, 0.08);
+      --radius: 24px;
+      --max: 1140px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      display:flex; align-items:center; justify-content:space-between; gap:24px;
+      padding: 18px 0;
+    }
+    .brand {
+      font-size: 1.15rem; font-weight: 800; letter-spacing:-0.04em;
+    }
+    .brand span { color: var(--blue); }
+    .nav { display:flex; gap:18px; color: var(--muted); font-size:0.95rem; }
+    .nav a:hover { color: var(--text); }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      min-height: 46px; padding: 0 18px; border-radius: 999px;
+      font-weight: 700; font-size: .95rem; transition: .2s ease;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--blue); color: white; }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .btn-secondary { background: white; color: var(--text); border-color: var(--line); }
+    .btn-secondary:hover { background: var(--surface-2); }
+    .hero { padding: 72px 0 56px; }
+    .hero-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap: 30px; align-items: center; }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px; border-radius: 999px;
+      background: var(--blue-soft); color: var(--blue);
+      font-size: .82rem; font-weight: 700; margin-bottom: 18px;
+    }
+    h1 {
+      margin:0 0 18px; font-size: clamp(2.35rem, 5vw, 4.8rem);
+      line-height: .98; letter-spacing: -.06em; max-width: 11ch;
+    }
+    .hero-copy p {
+      margin:0 0 28px; color: var(--muted); font-size: 1.08rem; max-width: 58ch;
+    }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-bottom: 30px; }
+    .hero-notes { display:grid; grid-template-columns: repeat(3,1fr); gap:14px; }
+    .note {
+      background: #fff; border:1px solid var(--line); border-radius: 18px; padding: 18px;
+    }
+    .note strong { display:block; margin-bottom: 6px; font-size: .96rem; }
+    .note span { color: var(--muted); font-size: .95rem; display:block; }
+    .hero-panel {
+      background: linear-gradient(180deg, #f7f9ff 0%, #f2f5fb 100%);
+      border: 1px solid var(--line); border-radius: 28px; padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .hero-panel-grid { display:grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+    .hero-card {
+      background: white; border: 1px solid var(--line); border-radius: 22px; overflow:hidden;
+    }
+    .hero-card .label {
+      padding: 12px 14px; border-bottom:1px solid var(--line);
+      font-size: .84rem; font-weight:700;
+    }
+    .hero-card img { width:100%; height: 270px; object-fit: cover; background:#f4f4f4; }
+    section { padding: 72px 0; }
+    .section-head {
+      display:grid; grid-template-columns: .95fr 1.05fr; gap: 40px;
+      align-items:end; margin-bottom: 30px;
+    }
+    .section-head h2 {
+      margin:0; font-size: clamp(1.9rem, 3vw, 3.2rem); line-height:1.02; letter-spacing:-.05em;
+    }
+    .section-head p { margin:0; color: var(--muted); max-width: 56ch; }
+    .grid-2, .grid-3 { display:grid; gap:24px; }
+    .grid-2 { grid-template-columns: repeat(2,1fr); }
+    .grid-3 { grid-template-columns: repeat(3,1fr); }
+    .card {
+      background:white; border:1px solid var(--line); border-radius: 24px; padding: 28px;
+    }
+    .card.soft { background: var(--surface); }
+    .card h3 { margin:0 0 14px; font-size:1.06rem; letter-spacing:-.03em; }
+    .card p, .card li { color: var(--muted); margin:0; }
+    .card ul { margin:0; padding-left: 18px; display:grid; gap:12px; }
+    .examples { display:grid; gap:28px; }
+    .example {
+      border:1px solid var(--line); border-radius: 28px; padding: 24px; background:white;
+      box-shadow: 0 10px 28px rgba(17,24,39,0.04);
+    }
+    .example-top {
+      display:flex; justify-content:space-between; gap:20px; align-items:flex-start; margin-bottom: 18px;
+    }
+    .example-top h3 { margin:0 0 4px; font-size:1.2rem; letter-spacing:-.03em; }
+    .tag {
+      display:inline-flex; padding: 8px 12px; border-radius: 999px;
+      background: var(--blue-soft); color: var(--blue); font-weight:700; font-size:.82rem;
+      white-space: nowrap;
+    }
+    .example p { margin:0; color: var(--muted); max-width: 70ch; }
+    .example-gif {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 18px;
+        object-fit: cover;
+      }
+    .gallery {
+      display:grid; grid-template-columns: 1.05fr 1fr 1fr 1fr; gap:14px; margin-top:18px;
+    }
+    .shot {
+      background: white; border:1px solid var(--line); border-radius: 20px; overflow:hidden;
+    }
+    .shot img { width:100%; height: 100%; object-fit: cover; aspect-ratio: 4/5; background:#f2f2f2; }
+    .shot .caption {
+      padding: 10px 12px; border-top:1px solid var(--line); font-size:.84rem; font-weight:700;
+      background:#fff;
+    }
+    .steps { display:grid; grid-template-columns: repeat(4,1fr); gap:20px; }
+    .step { border:1px solid var(--line); border-radius:24px; padding:26px; background:white; }
+    .index {
+      width:38px; height:38px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
+      background: var(--blue); color:white; font-weight:800; margin-bottom:12px;
+    }
+    .step h3 { margin:0 0 8px; font-size:1rem; letter-spacing:-.02em; }
+    .step p { margin:0; color:var(--muted); }
+    .partner {
+      background: linear-gradient(135deg, #111827 0%, #1d2436 100%);
+      color: white; border-radius: 32px; padding: 36px;
+    }
+    .partner h2 { margin:0 0 14px; font-size: clamp(2rem, 3vw, 3rem); line-height:1.02; letter-spacing:-.05em; }
+    .partner p, .partner li { color: rgba(255,255,255,.78); }
+    .partner-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:26px; }
+    .partner ul { margin:0; padding-left:18px; display:grid; gap:10px; }
+    footer { padding: 24px 0 44px; color: var(--muted); font-size:.92rem; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .section-head, .grid-2, .grid-3, .steps, .partner-grid, .gallery, .hero-notes, .hero-panel-grid { grid-template-columns: 1fr; }
+      .nav { display:none; }
+      h1 { max-width:none; }
+      .hero-card img { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a href="#top" class="brand">Produkt<span>Pix</span></a>
+      <nav class="nav">
+        <a href="#dores">Desafios</a>
+        <a href="#solucao">Solução</a>
+        <a href="#exemplos">Exemplos</a>
+        <a href="#processo">Processo</a>
+        <a href="#beneficios">Benefícios</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Proposta visual simples para a Zippy</div>
+          <h1>Criar imagens de produto pode ser muito mais simples.</h1>
+          <p>
+            O ProduktPix ajuda a Zippy a produzir imagens com mais rapidez.
+            Sem depender sempre de castings, sessões físicas e processos demorados.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#exemplos">Ver exemplos</a>
+            <a class="btn btn-secondary" href="#beneficios">Ver proposta</a>
+          </div>
+          <div class="hero-notes">
+            <div class="note">
+              <strong>Problema 1</strong>
+              <span>Nem sempre é fácil encontrar modelos com a rapidez necessária.</span>
+            </div>
+            <div class="note">
+              <strong>Problema 2</strong>
+              <span>A mesma equipa tem de responder ao catálogo e ao marketing.</span>
+            </div>
+            <div class="note">
+              <strong>Objetivo</strong>
+              <span>Criar um processo mais rápido, simples e consistente.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="hero-panel-grid">
+            <div class="hero-card">
+              <div class="label">Produto base</div>
+              <img src="assets/baby-blue-set-product.jpeg" alt="Produto base Zippy" />
+            </div>
+            <div class="hero-card">
+              <div class="label">Output ProduktPix</div>
+              <img src="assets/baby-blue-set-out2.jpg" alt="Resultado ProduktPix" />
+            </div>
+            <div class="hero-card">
+              <div class="label">Outro exemplo</div>
+              <img src="assets/demo.gif" alt="Outro resultado ProduktPix" />
+            </div>
+            <div class="hero-card">
+              <div class="label">Categoria adicional</div>
+              <img src="assets/shoe-example-out4.png" alt="Exemplo de calçado" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dores">
+      <div class="container">
+        <div class="section-head">
+          <h2>Onde está o bloqueio hoje.</h2>
+          <p>
+            O desafio não é só criar boas imagens.
+            O desafio é conseguir produzi-las com rapidez e sem sobrecarregar a equipa.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card soft">
+            <h3>As principais dores</h3>
+            <ul>
+              <li>Encontrar modelos infantis rapidamente nem sempre é simples.</li>
+              <li>Uma equipa pequena tem de tratar do catálogo e do marketing.</li>
+              <li>As sessões físicas exigem coordenação, tempo e repetição.</li>
+              <li>Quanto mais produtos existem, maior é a pressão sobre o processo.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>O resultado</h3>
+            <ul>
+              <li>A produção fica mais lenta do que deveria.</li>
+              <li>Fica mais difícil testar novas imagens rapidamente.</li>
+              <li>A equipa perde tempo em coordenação em vez de execução.</li>
+              <li>Manter consistência entre coleções exige mais esforço.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solucao">
+      <div class="container">
+        <div class="section-head">
+          <h2>É aqui que o ProduktPix entra.</h2>
+          <p>
+            O objetivo é dar à Zippy uma forma mais flexível de produzir imagens.
+            Mais rápida quando for preciso. Mais leve para a equipa.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Modelos digitais</h3>
+            <p>Criar modelos alinhados com a marca para usar em diferentes produtos.</p>
+          </div>
+          <div class="card">
+            <h3>Mais produção</h3>
+            <p>Criar mais imagens para catálogo e marketing com a mesma equipa.</p>
+          </div>
+          <div class="card soft">
+            <h3>Mais consistência</h3>
+            <p>Manter uma apresentação mais uniforme entre produtos e coleções.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>O que o ProduktPix permite fazer.</h2>
+          <p>
+            Em termos simples, o ProduktPix pega no produto,
+            aplica o modelo e ajuda a gerar novas imagens prontas a usar.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Na prática</h3>
+            <ul>
+              <li>Criar modelos digitais com o perfil pretendido.</li>
+              <li>Aplicar as peças da coleção nesses modelos.</li>
+              <li>Gerar várias imagens a partir do mesmo produto.</li>
+              <li>Ajudar catálogo e marketing com mais rapidez.</li>
+            </ul>
+          </div>
+          <div class="card soft">
+            <h3>Porque faz sentido</h3>
+            <ul>
+              <li>Reduz bloqueios ligados a casting e produção física.</li>
+              <li>Dá mais autonomia à equipa.</li>
+              <li>Ajuda a testar e produzir mais depressa.</li>
+              <li>Cria base para um fluxo mais escalável.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exemplos">
+      <div class="container">
+        <div class="section-head">
+          <h2>Alguns exemplos.</h2>
+          <p>
+            Abaixo estão testes feitos com produtos retirados da loja da Zippy e trabalhados no ProduktPix.
+            O ideal aqui é mostrar produto base, modelo aplicado e resultado final.
+          </p>
+        </div>
+
+        <div class="examples">
+
+          <article class="example">
+            <div class="example-top">
+              <div>
+                <h3>Exemplo 1 — Conjunto bebé</h3>
+                <p>Partindo de uma imagem simples do produto, foi possível gerar visuais com modelo digital para catálogo e comunicação.</p>
+              </div>
+              <span class="tag">0–12 meses</span>
+            </div>
+            <div class="gallery">
+              <div class="shot">
+                <img src="assets/baby-blue-set-product.jpeg" alt="Exemplo 1 — Conjunto bebé produto original" />
+                <div class="caption">Produto original</div>
+              </div>
+              <div class="shot">
+                <img src="assets/baby-blue-set-out1.png" alt="Exemplo 1 — Conjunto bebé output 1" />
+                <div class="caption">Output 1</div>
+              </div>
+              <div class="shot">
+                <img src="assets/baby-blue-set-out2.jpg" alt="Exemplo 1 — Conjunto bebé output 2" />
+                <div class="caption">Output 2</div>
+              </div>
+              <div class="shot">
+                <img src="assets/baby-blue-set-out3.png" alt="Exemplo 1 — Conjunto bebé output 3" />
+                <div class="caption">Output 3</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="example">
+            <div class="example-top">
+              <div>
+                <h3>Exemplo 2 — Look infantil rosa</h3>
+                <p>Aqui o foco foi mostrar como a mesma peça pode ganhar presença visual e ficar mais próxima de um resultado pronto a usar.</p>
+              </div>
+              <span class="tag">0–12 meses / early toddler visual</span>
+            </div>
+            <div class="gallery">
+              <div class="shot">
+                <img src="assets/pink-girl-set-product.jpeg" alt="Exemplo 2 — Look infantil rosa produto original" />
+                <div class="caption">Produto original</div>
+              </div>
+              <div class="shot">
+                <img src="assets/pink-girl-set-out1.jpg" alt="Exemplo 2 — Look infantil rosa output 1" />
+                <div class="caption">Output 1</div>
+              </div>
+              <div class="shot">
+                <img src="assets/pink-girl-set-out2.png" alt="Exemplo 2 — Look infantil rosa output 2" />
+                <div class="caption">Output 2</div>
+              </div>
+              <div class="shot">
+                <img src="assets/pink-girl-set-out3.jpg" alt="Exemplo 2 — Look infantil rosa output 3" />
+                <div class="caption">Output 3</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="example">
+            <div class="example-top">
+              <div>
+                <h3>Exemplo 3 — Calçado</h3>
+                <p>O teste mostra que o ProduktPix não serve apenas para vestuário. Também pode ajudar na apresentação de calçado e detalhes de styling.</p>
+              </div>
+              <span class="tag">Sapato / acessório</span>
+            </div>
+            <div class="gallery">
+              <div class="shot">
+                <img src="assets/shoe-example-product.jpeg" alt="Exemplo 3 — Calçado produto original" />
+                <div class="caption">Produto original</div>
+              </div>
+              <div class="shot">
+                <img src="assets/shoe-example-out1.png" alt="Exemplo 3 — Calçado output 1" />
+                <div class="caption">Output 1</div>
+              </div>
+              <div class="shot">
+                <img src="assets/shoe-example-out3.png" alt="Exemplo 3 — Calçado output 2" />
+                <div class="caption">Output 2</div>
+              </div>
+              <div class="shot">
+                <img src="assets/shoe-example-out4.png" alt="Exemplo 3 — Calçado output 3" />
+                <div class="caption">Output 3</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="example">
+            <div class="example-top">
+              <div>
+                <h3>Exemplo 4 — Camisa 4–7</h3>
+                <p>Neste caso, o objetivo foi gerar diferentes vistas da peça para mostrar flexibilidade visual com o mesmo input.</p>
+              </div>
+              <span class="tag">4–7 anos</span>
+            </div>
+            <div class="gallery">
+              <div class="shot">
+                <img src="assets/checked-shirt-product.jpeg" alt="Exemplo 4 — Camisa 4–7 produto original" />
+                <div class="caption">Produto original</div>
+              </div>
+              <div class="shot">
+                <img src="assets/checked-shirt-out1.png" alt="Exemplo 4 — Camisa 4–7 output 1" />
+                <div class="caption">Output 1</div>
+              </div>
+              <div class="shot">
+                <img src="assets/checked-shirt-out2.png" alt="Exemplo 4 — Camisa 4–7 output 2" />
+                <div class="caption">Output 2</div>
+              </div>
+              <div class="shot">
+                <img src="assets/checked-shirt-out3.png" alt="Exemplo 4 — Camisa 4–7 output 3" />
+                <div class="caption">Output 3</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="example">
+            <div class="example-top">
+              <div>
+                <h3>Exemplo 5 — Casaco / malha 8–12</h3>
+                <p>Este exemplo ajuda a visualizar como a Zippy pode produzir novas imagens de peças de coleção sem depender sempre de nova sessão fotográfica.</p>
+              </div>
+              <span class="tag">8–12 anos</span>
+            </div>
+            <div class="gallery">
+              <div class="shot">
+                <img src="assets/green-cardigan-product.jpeg" alt="Exemplo 5 — Casaco / malha 8–12 produto original" />
+                <div class="caption">Produto original</div>
+              </div>
+              <div class="shot">
+                <img src="assets/green-cardigan-out1.png" alt="Exemplo 5 — Casaco / malha 8–12 output 1" />
+                <div class="caption">Output 1</div>
+              </div>
+              <div class="shot">
+                <img src="assets/green-cardigan-out2.png" alt="Exemplo 5 — Casaco / malha 8–12 output 2" />
+                <div class="caption">Output 2</div>
+              </div>
+              <div class="shot">
+                <img src="assets/green-cardigan-out3.jpg" alt="Exemplo 5 — Casaco / malha 8–12 output 3" />
+                <div class="caption">Output 3</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="processo">
+      <div class="container">
+        <div class="section-head">
+          <h2>Como funciona.</h2>
+          <p>
+            O processo é simples.
+            E pode ser repetido sempre que houver necessidade.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="index">1</div>
+            <h3>Upload do produto</h3>
+            <p>Começa com a imagem base do produto.</p>
+          </div>
+          <div class="step">
+            <div class="index">2</div>
+            <h3>Escolha do modelo</h3>
+            <p>Escolhe-se o modelo e o estilo visual.</p>
+          </div>
+          <div class="step">
+            <div class="index">3</div>
+            <h3>Geração</h3>
+            <p>O ProduktPix gera as novas imagens.</p>
+          </div>
+          <div class="step">
+            <div class="index">4</div>
+            <h3>Utilização</h3>
+            <p>As imagens ficam prontas para catálogo e marketing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios">
+      <div class="container">
+        <div class="partner">
+          <h2>Porque pode fazer sentido avançar com o ProduktPix.</h2>
+          <div class="partner-grid">
+            <div>
+              <p>
+                A ideia é simples.
+                Dar à Zippy uma nova forma de produzir imagens com menos fricção.
+              </p>
+              <ul>
+                <li>Mais rapidez na criação de imagens.</li>
+                <li>Menos dependência de castings e produção repetida.</li>
+                <li>Mais capacidade para uma equipa pequena produzir.</li>
+                <li>Mais flexibilidade para catálogo e marketing.</li>
+                <li>Base para um processo mais escalável.</li>
+              </ul>
+            </div>
+            <div>
+              <p>
+                O melhor próximo passo é simples.
+                Testar com alguns produtos reais e avaliar o resultado.
+              </p>
+              <div class="hero-actions" style="margin-top:18px; margin-bottom:0;">
+                <a class="btn btn-primary" href="#top">Discutir piloto com 10–20 produtos</a>
+                <a class="btn btn-secondary" href="#exemplos" style="background:transparent; color:white; border-color: rgba(255,255,255,.18);">Rever exemplos</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Landing page criada com exemplos reais fornecidos a partir do ficheiro zip enviado.
+    </div>
+  </footer>
+</body>
+</html>
